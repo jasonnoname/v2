@@ -97,29 +97,12 @@ do
 	#statements
 main
 case $xuan in
-	3)
-		#ws-tls模式
+	1)
+		#WS模式
 		start
 		os_pan
 		huan
-		read -p "  2.CF上面解析的域名：" cf
-		cf1="- CERT_DOMAIN="$cf
-		cd /root/v2ray-poseidon/docker/sspanel/ws-tls/
-		sed -i '/license_key/d' config.json
-		sed -i "/\"panel\": \"sspanel-webapi\",/ a\\$key" config.json
-		sed -i '/"panelUrl":/d' config.json
-		sed -i "/\"checkRate\": 60,/ a\\$domain" config.json
-		sed -i '/"panelKey":/d' config.json
-		sed -i "8a\    $mukey" config.json
-		sed -i '/\"nodeId\":/d' config.json
-		sed -i "4a \    $rid" config.json
-		sed -i "/-\ CF_Email=/d" docker-compose.yml
-		sed -i "/-\ CF_Key=/d" docker-compose.yml
-		sed -i "27a \      $value" docker-compose.yml
-		sed -i "27a \      $email" docker-compose.yml
-		sed -i "/-\ CERT_\DOMAIN/d" docker-compose.yml
-		sed -i "25a \      $cf1" docker-compose.yml
-		dc up -d
+        docker run -d --name=vv -e speedtest=0  -e usemysql=0 -e downWithPanel=0 -e node_id=$sid -e sspanel_url=https://stantao.com -e key=weilehaoji --log-opt max-size=10m --log-opt max-file=5 --network=host --restart=always hulisang/v2ray_v3:go_dev        
 		echo "恭喜您，安装成功了！"
 		break;
 		;;
@@ -148,12 +131,29 @@ case $xuan in
 		echo "恭喜您，安装成功了！"
 		break;
 		;;
-	1)
-		#WS模式
+	3)
+		#ws-tls模式
 		start
 		os_pan
 		huan
-                docker run -d --name=vv -e speedtest=0  -e usemysql=0 -e downWithPanel=0 -e node_id=$sid -e sspanel_url=https://stantao.com -e key=weilehaoji --log-opt max-size=10m --log-opt max-file=5 --network=host --restart=always hulisang/v2ray_v3:go_dev        
+		read -p "  2.CF上面解析的域名：" cf
+		cf1="- CERT_DOMAIN="$cf
+		cd /root/v2ray-poseidon/docker/sspanel/ws-tls/
+		sed -i '/license_key/d' config.json
+		sed -i "/\"panel\": \"sspanel-webapi\",/ a\\$key" config.json
+		sed -i '/"panelUrl":/d' config.json
+		sed -i "/\"checkRate\": 60,/ a\\$domain" config.json
+		sed -i '/"panelKey":/d' config.json
+		sed -i "8a\    $mukey" config.json
+		sed -i '/\"nodeId\":/d' config.json
+		sed -i "4a \    $rid" config.json
+		sed -i "/-\ CF_Email=/d" docker-compose.yml
+		sed -i "/-\ CF_Key=/d" docker-compose.yml
+		sed -i "27a \      $value" docker-compose.yml
+		sed -i "27a \      $email" docker-compose.yml
+		sed -i "/-\ CERT_\DOMAIN/d" docker-compose.yml
+		sed -i "25a \      $cf1" docker-compose.yml
+		dc up -d
 		echo "恭喜您，安装成功了！"
 		break;
 		;;
