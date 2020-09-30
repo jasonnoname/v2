@@ -3,11 +3,11 @@
 red="\033[31m"
 black="\033[0m"
 main(){
-echo -e "${black}       			 ————————————xy 工具箱————————————"
+echo -e "${black}       			 ————————————杰森工具箱————————————"
 echo -e "${black}       ————————————对接适配centos7和Ubuntu16，其他系统待测试————————————"
 echo -e "${red}1. WS-TLS模式${black}:(前端面板格式：你的域名;443;0;tls;ws;path=/|host=你的域名)"
 echo -e "${red}2. TCP模式${black}:(前端面板格式：你的IP或域名;10086;2;tcp;;)"
-echo -e "${red}3. CDN模式${black}:(前端面板格式：你的域名;443;0;tls;ws;path=/|host=你的域名)"
+echo -e "${red}3. WS模式"
 echo -e "${red}4. 加速脚本安装${black}:(推荐使用BBR2或BBRPlus)"
 echo -e "${red}5. 中转脚本安装${black}:(iptables,正常的端口转发使用)"
 echo -e "${red}6. 中转域名脚本安装${black}:(要使用此脚本请先使用5中转脚本中的安装iptables功能进行iptables的安装)"
@@ -22,9 +22,9 @@ start(){
 xi=" "
 xi2=" "
 #网站地址
-domain='    "panelUrl": "http://poli23.icu/",'
+domain='    "panelUrl": "http://stantao.com/",'
 #mukey
-mukey='"panelKey": "xiaoyang",'
+mukey='"panelKey": "weilehaoji",'
 #面板节点id
 read -p "  1.面板里添加完节点后生成的自增ID:" sid
 rid='"nodeId": '$sid','
@@ -40,8 +40,8 @@ os_pan(){
 os=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 if [ "$os" == '"CentOS Linux"' ] ;
 then
-        echo "您的系统是"${os}"，开始进入脚本：(10秒之后开始)"
-        sleep 10;
+        echo "您的系统是"${os}"，开始进入脚本：(5秒之后开始)"
+        sleep 5;
         yum -y install ntpdate
 		timedatectl set-timezone Asia/Shanghai
 		ntpdate ntp1.aliyun.com
@@ -49,8 +49,8 @@ then
 		systemctl stop firewalld
 elif [ "$os" == '"Ubuntu"' ]; 
 then
-        echo "您的系统是"${os}"，开始进入脚本：(10秒之后开始)"
-        sleep 10;
+        echo "您的系统是"${os}"，开始进入脚本：(5秒之后开始)"
+        sleep 5;
 		apt-get install -y ntp
 		service ntp restart
 		ufw disable
@@ -148,20 +148,12 @@ case $xuan in
 		break;
 		;;
 	3)
-		#CDN模式
+		#WS模式
 		start
 		os_pan
 		huan
 		cd /root/v2ray-poseidon/docker/sspanel/ws
-		sed -i '/license_key/d' config.json
-		sed -i "/\"panel\": \"sspanel-webapi\",/ a\\$key" config.json
-		sed -i '/"panelUrl":/d' config.json
-		sed -i "/\"checkRate\": 60,/ a\\$domain" config.json
-		sed -i '/"panelKey":/d' config.json
-		sed -i "8a\    $mukey" config.json
-		sed -i '/\"nodeId\":/d' config.json
-		sed -i "4a \    $rid" config.json
-		service docker restart
+        docker run -d --name=vv -e speedtest=0  -e usemysql=0 -e downWithPanel=0 -e node_id=$sid -e sspanel_url=https://stantao.com -e key=weilehaoji --log-opt max-size=10m --log-opt max-file=5 --network=host --restart=always hulisang/v2ray_v3:go_dev        
 		dc up -d
 		echo "恭喜您，安装成功了！"
 		break;
@@ -189,6 +181,3 @@ case $xuan in
 esac
 
 done
-
-
-
