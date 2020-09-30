@@ -11,7 +11,7 @@ echo -e "${red}3. WS-TLS模式${black}:(前端面板格式：你的域名;443;0;
 echo -e "${red}4. 加速脚本安装${black}:(推荐使用BBR2或BBRPlus)"
 echo -e "${red}5. 中转脚本安装${black}:(iptables1)"
 echo -e "${red}6. 中转脚本安装${black}:(iptables2)"
-echo -e "${red}7. 退出脚本"
+echo -e "${red}7. 一键BBRPlus"
 echo -e "${black} ————————————————————————————————————————————————————————————————————————————————————————"
 read -p "请选择对接模式(1,2,3,4,5,6,7)：" xuan
 }
@@ -170,7 +170,7 @@ case $xuan in
 		break;
 		;;
 	7)
-		exit;
+		wget "https://github.com/a8866051/bbrplus/raw/master/ok_bbrplus_centos.sh" && chmod +x ok_bbrplus_centos.sh && ./ok_bbrplus_centos.sh
 		;;
 	*) 	
 		echo "您的选择错误，请使用(1,2,3,4,5,6,7)进行选择！"
