@@ -7,7 +7,7 @@ echo -e "${black}       			 ————————————杰森工具箱�
 echo -e "${black}       ————————————对接适配centos7和Ubuntu16，其他系统待测试————————————"
 echo -e "${red}1. "WS模式"
 echo -e "${red}2. TCP模式${black}:(前端面板格式：你的IP或域名;10086;2;tcp;;)"
-echo -e "${red}3. WS-TLS模式${black}:(前端面板格式：你的域名;443;0;tls;ws;path=/|host=你的域名)
+echo -e "${red}3. WS-TLS模式${black}:(前端面板格式：你的域名;443;0;tls;ws;path=/|host=你的域名)"
 echo -e "${red}4. 加速脚本安装${black}:(推荐使用BBR2或BBRPlus)"
 echo -e "${red}5. 中转脚本安装${black}:(iptables1)"
 echo -e "${red}6. 中转脚本安装${black}:(iptables2)"
