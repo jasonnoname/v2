@@ -9,8 +9,8 @@ echo -e "${red}1. WS-TLS模式${black}:(前端面板格式：你的域名;443;0;
 echo -e "${red}2. TCP模式${black}:(前端面板格式：你的IP或域名;10086;2;tcp;;)"
 echo -e "${red}3. WS模式"
 echo -e "${red}4. 加速脚本安装${black}:(推荐使用BBR2或BBRPlus)"
-echo -e "${red}5. 中转脚本安装${black}:(iptables,正常的端口转发使用)"
-echo -e "${red}6. 中转域名脚本安装${black}:(要使用此脚本请先使用5中转脚本中的安装iptables功能进行iptables的安装)"
+echo -e "${red}5. 中转脚本安装${black}:(iptables1)"
+echo -e "${red}6. 中转脚本安装${black}:(iptables2)"
 echo -e "${red}7. 退出脚本"
 echo -e "${black} ————————————————————————————————————————————————————————————————————————————————————————"
 read -p "请选择对接模式(1,2,3,4,5,6,7)：" xuan
@@ -165,11 +165,10 @@ case $xuan in
 		break;
 		;;
 	5)
-		wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubiBackup/doubi/master/iptables-pf.sh && chmod +x iptables-pf.sh && bash iptables-pf.sh
-		break;
+		wget -qO natcfg.sh http://www.arloor.com/sh/iptablesUtils/natcfg.sh && bash natcfg.sh
 		;;
 	6)  
-		wget -qO natcfg.sh https://raw.githubusercontent.com/arloor/iptablesUtils/master/natcfg.sh && bash natcfg.sh
+		wget --no-check-certificate -qO natcfg.sh http://www.arloor.com/sh/iptablesUtils/natcfg.sh && bash natcfg.sh
 		break;
 		;;
 	7)
