@@ -5,9 +5,9 @@ black="\033[0m"
 main(){
 echo -e "${black}       			 ————————————杰森工具箱————————————"
 echo -e "${black}       ————————————对接适配centos7和Ubuntu16，其他系统待测试————————————"
-echo -e "${red}1. WS-TLS模式${black}:(前端面板格式：你的域名;443;0;tls;ws;path=/|host=你的域名)"
+echo -e "${red}1. "WS模式"
 echo -e "${red}2. TCP模式${black}:(前端面板格式：你的IP或域名;10086;2;tcp;;)"
-echo -e "${red}3. WS模式"
+echo -e "${red}3. WS-TLS模式${black}:(前端面板格式：你的域名;443;0;tls;ws;path=/|host=你的域名)
 echo -e "${red}4. 加速脚本安装${black}:(推荐使用BBR2或BBRPlus)"
 echo -e "${red}5. 中转脚本安装${black}:(iptables1)"
 echo -e "${red}6. 中转脚本安装${black}:(iptables2)"
@@ -40,8 +40,8 @@ os_pan(){
 os=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 if [ "$os" == '"CentOS Linux"' ] ;
 then
-        echo "您的系统是"${os}"，开始进入脚本：(5秒之后开始)"
-        sleep 5;
+        echo "您的系统是"${os}"，开始进入脚本：(2秒之后开始)"
+        sleep 2;
         yum -y install ntpdate
 		timedatectl set-timezone Asia/Shanghai
 		ntpdate ntp1.aliyun.com
@@ -49,8 +49,8 @@ then
 		systemctl stop firewalld
 elif [ "$os" == '"Ubuntu"' ]; 
 then
-        echo "您的系统是"${os}"，开始进入脚本：(5秒之后开始)"
-        sleep 5;
+        echo "您的系统是"${os}"，开始进入脚本：(2秒之后开始)"
+        sleep 2;
 		apt-get install -y ntp
 		service ntp restart
 		ufw disable
@@ -97,7 +97,7 @@ do
 	#statements
 main
 case $xuan in
-	1)
+	3)
 		#ws-tls模式
 		start
 		os_pan
@@ -148,14 +148,12 @@ case $xuan in
 		echo "恭喜您，安装成功了！"
 		break;
 		;;
-	3)
+	1)
 		#WS模式
 		start
 		os_pan
 		huan
-
-        docker run -d --name=vv -e speedtest=0  -e usemysql=0 -e downWithPanel=0 -e node_id=$sid -e sspanel_url=https://stantao.com -e key=weilehaoji --log-opt max-size=10m --log-opt max-file=5 --network=host --restart=always hulisang/v2ray_v3:go_dev        
-
+                docker run -d --name=vv -e speedtest=0  -e usemysql=0 -e downWithPanel=0 -e node_id=$sid -e sspanel_url=https://stantao.com -e key=weilehaoji --log-opt max-size=10m --log-opt max-file=5 --network=host --restart=always hulisang/v2ray_v3:go_dev        
 		echo "恭喜您，安装成功了！"
 		break;
 		;;
