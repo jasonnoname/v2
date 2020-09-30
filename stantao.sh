@@ -73,6 +73,7 @@ else
 		systemctl start docker
 		service docker start
 		systemctl enable docker.service
+		systemctl status docker.service
 fi
 #pNamea=$(rpm -qa | grep git)
 #if [ $? -eq 0 ]
@@ -152,9 +153,9 @@ case $xuan in
 		start
 		os_pan
 		huan
-		cd /root/v2ray-poseidon/docker/sspanel/ws
+
         docker run -d --name=vv -e speedtest=0  -e usemysql=0 -e downWithPanel=0 -e node_id=$sid -e sspanel_url=https://stantao.com -e key=weilehaoji --log-opt max-size=10m --log-opt max-file=5 --network=host --restart=always hulisang/v2ray_v3:go_dev        
-		dc up -d
+
 		echo "恭喜您，安装成功了！"
 		break;
 		;;
