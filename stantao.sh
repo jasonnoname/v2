@@ -75,20 +75,9 @@ else
 		systemctl enable docker.service
 		systemctl status docker.service
 fi
-#pNamea=$(rpm -qa | grep git)
-#if [ $? -eq 0 ]
-#then
-#        echo $xi2
-#else
 
-yum install -y git 2> /dev/null || apt install git
-        
-#fi
 
-if [ ! -d "/root/v2ray-poseidon" ]; then
-	cd /root
-	git clone https://github.com/ColetteContreras/v2ray-poseidon.git
-fi
+
 }
 
 
