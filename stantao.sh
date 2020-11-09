@@ -40,8 +40,8 @@ os_pan(){
 os=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 if [ "$os" == '"CentOS Linux"' ] ;
 then
-        echo "您的系统是"${os}"，开始进入脚本：(2秒之后开始)"
-        sleep 2;
+        echo "您的系统是"${os}"，开始进入脚本："
+
         yum -y install ntpdate
 		timedatectl set-timezone Asia/Shanghai
 		ntpdate ntp1.aliyun.com
