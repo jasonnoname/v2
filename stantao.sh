@@ -49,8 +49,8 @@ then
 		systemctl stop firewalld
 elif [ "$os" == '"Ubuntu"' ]; 
 then
-        echo "您的系统是"${os}"，开始进入脚本：(2秒之后开始)"
-        sleep 2;
+        echo "您的系统是"${os}"，开始进入脚本："
+
 		apt-get install -y ntp
 		service ntp restart
 		ufw disable
