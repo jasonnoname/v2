@@ -91,7 +91,15 @@ case $xuan in
 		start
 		os_pan
 		huan
-        docker run -d --name=vv$sid -e speedtest=0  -e usemysql=0 -e downWithPanel=0 -e node_id=$sid -e sspanel_url=https://stantao.com -e key=weilehaoji --log-opt max-size=10m --log-opt max-file=5 --network=host --restart=always hulisang/v2ray_v3:go_dev        
+        	docker run --restart=on-failure --name v$sid -d -v /etc/soga/:/etc/soga/ --network host jasonstantao/soga:2.0.7 \
+		--type=sspanel-uim \
+		--server_type=v2ray \
+		--api=webapi \
+		--webapi_url=https://stantao.com \
+		--webapi_mukey=weilehaoji \
+		--node_id=$sid \
+		--default_dns=1.1.1.1,8.8.8.8 \
+		--dns_cache_time=10
 		echo "恭喜您，安装成功了！"
 		break;
 		;;
