@@ -42,7 +42,7 @@ if [ "$os" == '"CentOS Linux"' ] ;
 then
         echo "您的系统是"${os}"，开始进入脚本："
 
-        yum -y install ntpdate
+        	yum -y install ntpdate
 		timedatectl set-timezone Asia/Shanghai
 		ntpdate ntp1.aliyun.com
 		systemctl disable firewalld
@@ -51,8 +51,9 @@ elif [ "$os" == '"Ubuntu"' ];
 then
         echo "您的系统是"${os}"，开始进入脚本："
 
-		apt-get install -y ntp
-		service ntp restart
+		apt install -y ntpdate
+		timedatectl set-timezone Asia/Shanghai
+		ntpdate ntp1.aliyun.com
 		ufw disable
 fi
 }
