@@ -50,7 +50,7 @@ then
 elif [ "$os" == '"Ubuntu"' ]; 
 then
         echo "您的系统是"${os}"，开始进入脚本："
-
+		yum install wget -y
 		apt install -y ntpdate
 		timedatectl set-timezone Asia/Shanghai
 		ntpdate ntp1.aliyun.com
