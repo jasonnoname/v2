@@ -10,7 +10,7 @@ echo -e "${red}2. TCP模式${black}:(前端面板格式：你的IP或域名;1008
 echo -e "${red}3. WS-TLS模式${black}:(前端面板格式：你的域名;443;0;tls;ws;path=/|host=你的域名)"
 echo -e "${red}4. 加速脚本安装${black}:(推荐使用BBR2或BBRPlus)"
 echo -e "${red}5. 中转脚本安装${black}:(iptables1)"
-echo -e "${red}6. 中转脚本安装${black}:(iptables2)"
+echo -e "${red}6. AWS改root权限"
 echo -e "${red}7. 一键BBRPlus"
 echo -e "${black} ————————————————————————————————————————————————————————————————————————————————————————"
 read -p "请选择对接模式(1,2,3,4,5,6,7)：" xuan
@@ -163,10 +163,19 @@ case $xuan in
 		break;
 		;;
 	5)
-		wget -qO natcfg.sh http://www.arloor.com/sh/iptablesUtils/natcfg.sh && bash natcfg.sh
+		rm -rf brook-pf-mod.sh;wget -N --no-check-certificate "https://raw.githubusercontent.com/yulewang/brook/master/brook-pf-mod.sh"
+		mkdir /usr/local/brook-pf;cd /usr/local/brook-pf;rm -rf /usr/local/brook-pf/*
+		wget -N --no-check-certificate "https://www.isyunyi.com/download/linux/brook";chmod +x brook
+		echo >  /usr/local/brook-pf/brook.conf
+		wget https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/service/brook-pf_centos -O /etc/init.d/brook-pf;chmod +x /etc/init.d/brook-pf;chkconfig --add brook-pf;chkconfig brook-pf on
+		cd ~;chmod +x brook-pf-mod.sh;./brook-pf-mod.sh
+		yum install bind-utils -y
+		break;
 		;;
 	6)  
-		wget --no-check-certificate -qO natcfg.sh http://www.arloor.com/sh/iptablesUtils/natcfg.sh && bash natcfg.sh
+		sed -i 's/#PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config
+		sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+		service sshd restart
 		break;
 		;;
 	7)
