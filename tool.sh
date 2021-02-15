@@ -163,13 +163,13 @@ case $xuan in
 		break;
 		;;
 	5)
+		yum install bind-utils -y
 		rm -rf brook-pf-mod.sh;wget -N --no-check-certificate "https://raw.githubusercontent.com/yulewang/brook/master/brook-pf-mod.sh"
 		mkdir /usr/local/brook-pf;cd /usr/local/brook-pf;rm -rf /usr/local/brook-pf/*
 		wget -N --no-check-certificate "https://www.isyunyi.com/download/linux/brook";chmod +x brook
 		echo >  /usr/local/brook-pf/brook.conf
 		wget https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/service/brook-pf_centos -O /etc/init.d/brook-pf;chmod +x /etc/init.d/brook-pf;chkconfig --add brook-pf;chkconfig brook-pf on
 		cd ~;chmod +x brook-pf-mod.sh;./brook-pf-mod.sh
-		yum install bind-utils -y
 		break;
 		;;
 	6)  
