@@ -107,28 +107,10 @@ case $xuan in
 		break;
 		;;
 	2)
-		#tcp模式
-		start
-		os_pan
-		huan
-		read -p "  2.tcp端口：" port
-		port1='     - "'$port':'$port'"'
-		port2='    "port": '$port','
-		cd /root/v2ray-poseidon/docker/sspanel/tcp
-		sed -i '/license_key/d' config.json
-		sed -i "/\"panel\": \"sspanel-webapi\",/ a\\$key" config.json
-		sed -i '/"panelUrl":/d' config.json
-		sed -i "/\"checkRate\": 60,/ a\\$domain" config.json
-		sed -i '/"panelKey":/d' config.json
-		sed -i "8a\    $mukey" config.json
-		sed -i '/\"nodeId\":/d' config.json
-		sed -i "4a \    $rid" config.json
-		sed -i '22d' config.json
-		sed -i "21a \ $port2" config.json
-		sed -i '9d' docker-compose.yml
-		sed -i "8a \ $port1" docker-compose.yml
-		dc up -d
+		#安装speedtest
+		wget -qO- https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-1.0.0-x86_64-linux.tgz | tar zxv && rm -f ./speedtest.*
 		echo "恭喜您，安装成功了！"
+		./speedtest.sh
 		break;
 		;;
 	3)
