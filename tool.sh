@@ -6,7 +6,7 @@ main(){
 echo -e "${black}       			 ————————————杰森工具箱————————————"
 echo -e "${black}       ————————————对接适配centos7和Ubuntu16，其他系统待测试————————————"
 echo -e "${red}1. WS模式"
-echo -e "${red}2. TCP模式${black}:(前端面板格式：你的IP或域名;10086;2;tcp;;)"
+echo -e "${red}2. 安装speedtest"
 echo -e "${red}3. WS-TLS模式${black}:(前端面板格式：你的域名;443;0;tls;ws;path=/|host=你的域名)"
 echo -e "${red}4. 加速脚本安装${black}:(推荐使用BBR2或BBRPlus)"
 echo -e "${red}5. 安装Brook"
@@ -110,7 +110,7 @@ case $xuan in
 		#安装speedtest
 		wget -qO- https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-1.0.0-x86_64-linux.tgz | tar zxv && rm -f ./speedtest.*
 		echo "恭喜您，安装成功了！"
-		./speedtest.sh
+		./speedtest
 		break;
 		;;
 	3)
