@@ -159,7 +159,7 @@ case $xuan in
 		;;
 	4)
 		yum install wget
-		wget -N --no-check-certificate "https://github.000060000.xyz/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
+		wget -N "https://api.mgde.xyz/tcp-old.sh" && chmod +x tcp-old.sh && ./tcp-old.sh
 		break;
 		;;
 	5)
