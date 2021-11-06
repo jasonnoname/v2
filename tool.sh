@@ -115,7 +115,7 @@ case $xuan in
 		;;
 	3)
 		#ws-tls模式
-start
+		start
 		os_pan
 		huan
 		docker pull crackair/xrayr:latest && docker run --restart=always --name xrayr -d -v /root/config.yml:/etc/XrayR/config.yml --network=host crackair/xrayr:latest
