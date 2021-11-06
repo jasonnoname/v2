@@ -5,9 +5,9 @@ black="\033[0m"
 main(){
 echo -e "${black}       			 ————————————杰森工具箱————————————"
 echo -e "${black}       ————————————对接适配centos7和Ubuntu16，其他系统待测试————————————"
-echo -e "${red}1. WS模式"
+echo -e "${red}1. sogav2"
 echo -e "${red}2. 安装speedtest"
-echo -e "${red}3. WS-TLS模式${black}:(前端面板格式：你的域名;443;0;tls;ws;path=/|host=你的域名)"
+echo -e "${red}3. xrayr"
 echo -e "${red}4. 加速脚本安装${black}:(推荐使用BBR2或BBRPlus)"
 echo -e "${red}5. 安装Brook"
 echo -e "${red}6. AWS改root权限"
@@ -115,27 +115,10 @@ case $xuan in
 		;;
 	3)
 		#ws-tls模式
-		start
+start
 		os_pan
 		huan
-		read -p "  2.CF上面解析的域名：" cf
-		cf1="- CERT_DOMAIN="$cf
-		cd /root/v2ray-poseidon/docker/sspanel/ws-tls/
-		sed -i '/license_key/d' config.json
-		sed -i "/\"panel\": \"sspanel-webapi\",/ a\\$key" config.json
-		sed -i '/"panelUrl":/d' config.json
-		sed -i "/\"checkRate\": 60,/ a\\$domain" config.json
-		sed -i '/"panelKey":/d' config.json
-		sed -i "8a\    $mukey" config.json
-		sed -i '/\"nodeId\":/d' config.json
-		sed -i "4a \    $rid" config.json
-		sed -i "/-\ CF_Email=/d" docker-compose.yml
-		sed -i "/-\ CF_Key=/d" docker-compose.yml
-		sed -i "27a \      $value" docker-compose.yml
-		sed -i "27a \      $email" docker-compose.yml
-		sed -i "/-\ CERT_\DOMAIN/d" docker-compose.yml
-		sed -i "25a \      $cf1" docker-compose.yml
-		dc up -d
+		docker pull crackair/xrayr:latest && docker run --restart=always --name xrayr -d -v /root/config.yml:/etc/XrayR/config.yml --network=host crackair/xrayr:latest
 		echo "恭喜您，安装成功了！"
 		break;
 		;;
