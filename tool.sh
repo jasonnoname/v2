@@ -26,8 +26,8 @@ domain='    "panelUrl": "http://stantao.com/",'
 #mukey
 mukey='"panelKey": "weilehaoji",'
 #面板节点id
-read -p "  1.面板里添加完节点后生成的自增ID:" sid
-rid='"nodeId": '$sid','
+#read -p "  1.面板里添加完节点后生成的自增ID:" sid
+#rid='"nodeId": '$sid','
 #cloudflare 邮箱
 email="- CF_Email=l2690329987@gmail.com"
 #cloudflare密钥
