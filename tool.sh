@@ -94,15 +94,6 @@ case $xuan in
 		start
 		os_pan
 		huan
-        	docker run --restart=on-failure --name v$sid -d -v /etc/soga/:/etc/soga/ --network host vaxilu/soga \
-		--type=sspanel-uim \
-		--server_type=v2ray \
-		--api=webapi \
-		--webapi_url=https://baidupi.xyz \
-		--webapi_mukey=weilehaoji \
-		--node_id=$sid \
-		--soga_key=HNBZvn0GxEvWYKIi2pHUzd118s3dMuGY \
-		--dns_cache_time=10
 		echo "恭喜您，安装成功了！"
 		break;
 		;;
