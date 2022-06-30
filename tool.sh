@@ -115,7 +115,7 @@ case $xuan in
 		;;
 	4)
 		yum install wget
-		wget -N "https://api.mgde.xyz/tcp-old.sh" && chmod +x tcp-old.sh && ./tcp-old.sh
+		wget http://sh.nekoneko.cloud/tools.sh -O tools.sh && bash tools.sh
 		break;
 		;;
 	5)
